@@ -1,158 +1,43 @@
 
-# 🧠 FitScore AI
+# 🤖 FitScore AI
 
-**"Optimize Your Resume. Maximize Your Chances."**
+**Slogan:** _"Find your fit, smart and quick."_
 
-FitScore AI is an AI-powered web application that helps users analyze how well their resume matches a job description. By leveraging OpenAI GPT-4, it generates a match score, a concise explanation, and personalized suggestions for improvement.
-
----
-
-## 📌 Features
-
-- Upload resume and job description files (.pdf, .docx, .txt)
-- Extract and clean text using Python parsers
-- Evaluate match with GPT-4 and return:
-  - A score (0–100)
-  - An explanation
-  - Three improvement tips
-- Responsive UI for a smooth experience
+FitScore AI is a smart, machine learning-powered API platform that evaluates how well a resume matches a job description. Designed to be completely self-hosted and cost-effective, it uses NLP and ML to score compatibility, identify skill gaps, and offer improvement suggestions — without relying on paid AI APIs.
 
 ---
 
-## 🧱 Tech Stack
+## 🚀 Features
 
-| Layer        | Technology                |
-|--------------|----------------------------|
-| **Frontend** | React + Tailwind CSS (or Flutter Web) |
-| **Backend**  | Python + FastAPI           |
-| **AI/NLP**   | OpenAI GPT-4 API           |
-| **Parsing**  | `pdfplumber`, `docx2txt`   |
-| **Deployment** | Vercel (Frontend), Render or Heroku (Backend) |
-
----
-
-## 🧠 System Architecture
-
-```
-[User] 
-  |
-  v
-[Frontend (React/Flutter)]
-  |
-  v
-[FastAPI Backend]
-  |- Text Parser (PDF/DOCX/TXT)
-  |- Prompt Builder
-  |- GPT-4 Evaluator
-  |
-  v
-[OpenAI API]
-```
+- 📄 Upload resume and job description (text or file)
+- 🔍 NLP-based text analysis
+- 📈 Predict a **fit score (0–100%)**
+- 🧠 Highlight **missing keywords and suggestions**
+- 🛠️ Fully local and open-source — no OpenAI, no billing
+- 🌐 Host as a public API using FastAPI
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ Tech Stack
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/fitscore-ai.git
-cd fitscore-ai
-```
-
-### 2. Create and Activate a Virtual Environment
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-### 3. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Set Up Environment Variables
-Create a `.env` file:
-```env
-OPENAI_API_KEY=your_openai_api_key_here
-```
-
-### 5. Run the Backend Server
-```bash
-uvicorn main:app --reload
-```
+| Layer         | Tools                            |
+|---------------|----------------------------------|
+| Language       | Python 3.10+                     |
+| ML/NLP         | scikit-learn, spaCy, TF-IDF      |
+| API Framework  | FastAPI, Uvicorn                 |
+| Model Export   | joblib / pickle                  |
+| Deployment     | Hugging Face Spaces / Railway / Render |
+| Optional Frontend | React, Tailwind (planned)     |
 
 ---
 
-## 📂 API Endpoints
-
-### `POST /upload`
-**Uploads resume and job files.**
-
-- **Request:** `multipart/form-data`
-  - `resume`: File (.pdf, .docx, .txt)
-  - `job`: File (.pdf, .docx, .txt)
-
-- **Response:**
-```json
-{
-  "resume_text": "Extracted resume text...",
-  "job_text": "Extracted job text..."
-}
-```
-
----
-
-### `POST /score`
-**Submits text for GPT-4 scoring.**
-
-- **Request:**
-```json
-{
-  "resume_text": "text string",
-  "job_text": "text string"
-}
-```
-
-- **Response:**
-```json
-{
-  "score": 85,
-  "explanation": "You match 90% of required skills...",
-  "suggestions": [
-    "Include more cloud experience.",
-    "Add quantifiable project outcomes.",
-    "Use keywords from the job post."
-  ]
-}
-```
-
----
-
-## 📄 GPT Prompt Template
-
-```plaintext
-You are an AI career advisor. Given the following resume and job description, evaluate how well the resume matches the job.
-
-Return:
-1. A match score (0–100)
-2. A short explanation
-3. Three resume improvement suggestions
-
-Respond in JSON format:
-{
-  "score": <int>,
-  "explanation": "<reasoning>",
-  "suggestions": ["...", "...", "..."]
-}
-```
-
----
-
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
 fitscore-ai/
 ├── main.py
+├── model.py
+├── schemas.py
 ├── routers/
 │   ├── upload.py
 │   └── score.py
@@ -166,23 +51,67 @@ fitscore-ai/
 └── README.md
 ```
 
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/fitscoreai.git
+cd fitscoreai
+```
+
+### 2. Create and Activate a Virtual Environment
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+### 3. Train the model
+
+```bash
+python app/ml/train_model.py
+```
+
+### 5. Start the API
+
+```bash
+uvicorn main:app --reload
+```
+
+### 6. Open in Browser
+
+```bash
+Go to: http://localhost:8000/docs
+```
+
+---
+
 ---
 
 ## 🧪 Testing
 
-- ✅ Unit tests for parsers
-- ✅ Integration testing for upload → score pipeline
-- ✅ Handle invalid file formats gracefully
+- Use Swagger UI at /docs or Postman to test:
+
+- Sample job descriptions
+
+- Sample resume content
+
+- Scoring endpoint
 
 ---
 
 ## 🔄 Roadmap
 
-- [ ] Frontend UI
-- [ ] Resume keyword highlighter
-- [ ] User accounts + resume history
-- [ ] AI resume rewriter
-- [ ] LinkedIn/Indeed import
+- Add transformer embeddings for deeper context
+
+- Auto-extract skills from resumes (NER)
+
+- Build web-based UI dashboard (React)
+
+- Batch scoring for HR/recruiters
+
+- Account system and scoring history
 
 ---
 
