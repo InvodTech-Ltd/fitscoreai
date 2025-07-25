@@ -121,16 +121,9 @@ MIT License © 2025 [Trevor Madara Kayeyia]
 
 ---
 
-## 🙌 Acknowledgments
-
-- [OpenAI GPT-4](https://platform.openai.com/)
-- [FastAPI](https://fastapi.tiangolo.com/)
-- [pdfplumber](https://github.com/jsvine/pdfplumber)
-- [docx2txt](https://github.com/ankushshah89/python-docx2txt)
-
 ---
 
 ## ✉️ Contact
 
-Built by [@yourusername](https://github.com/Trevor-Kayeyia-Madara)  
+Built by [@Trevor-Kayeyia-Madara](https://github.com/Trevor-Kayeyia-Madara)  
 Feel free to fork, contribute, or open an issue!
