@@ -1,9 +1,9 @@
 import os
-import openai
+from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 async def analyze_resume_job(resume: str, job: str) -> dict:
     prompt = f"""
@@ -22,11 +22,19 @@ Evaluate the resume for the job and return a JSON with the following:
 - summary: string
 """
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": prompt}],
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
         temperature=0.7
     )
 
-    content = response['choices'][0]['message']['content']
-    return eval(content) if content.startswith("{") else {"error": "Invalid GPT response"}
+    content = response.choices[0].message.content.strip()
+
+    # Optional: safely parse JSON (instead of eval)
+    import json
+    try:
+        return json.loads(content)
+    except:
+        return {"response": content}
