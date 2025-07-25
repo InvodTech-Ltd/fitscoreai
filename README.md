@@ -188,7 +188,7 @@ fitscore-ai/
 
 ## 📄 License
 
-MIT License © 2025 [Your Name]
+MIT License © 2025 [Trevor Madara Kayeyia]
 
 ---
 
@@ -203,5 +203,5 @@ MIT License © 2025 [Your Name]
 
 ## ✉️ Contact
 
-Built by [@yourusername](https://github.com/yourusername)  
+Built by [@yourusername](https://github.com/Trevor-Kayeyia-Madara)  
 Feel free to fork, contribute, or open an issue!
